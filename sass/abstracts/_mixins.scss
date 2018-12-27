@@ -1,0 +1,42 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin centerBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin centerBlockClear {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0);
+}
+
+/**
+- Using one gaint mixin
+
+- ORDER: Base + typography > general layout + grid > page layout > components 
+
+**/
+@mixin responsive($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content }; //600px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content };  //900px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content };    //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };  //1800px
+    }
+}
